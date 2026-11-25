@@ -526,14 +526,14 @@ function initializeGuestGreeting() {
 
     if (names.length === 0 && !pases) return;
 
+    const total = pases || names.length;
+    badge.textContent = total;
     const pase = document.getElementById('guestPase');
-    if (pase && pases) {
-        pase.innerHTML = `Invitación válida por <b>${pases} persona${pases > 1 ? 's' : ''}</b>`;
-        pase.style.display = 'block';
+    if (pase) {
+        pase.innerHTML = total === 1
+            ? 'Con mucho cariño, esta invitación es personal y válida para <b>1 persona</b>. Le agradecemos respetar el número de invitados.'
+            : `Con mucho cariño, esta invitación es válida para <b>${total} personas</b>. Les agradecemos respetar el número de invitados.`;
     }
-
-    // Badge: número de pases si viene en el enlace; si no, total de nombres
-    badge.textContent = pases || names.length;
 
     // Subtítulo de acompañantes: solo tiene sentido cuando hay más de un
     // nombre individual (no aplica al formato "Familia X")

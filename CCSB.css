@@ -3263,3 +3263,58 @@ img[src*="iconos/"], .theme-icon-img, .t-ico img, .modern-icon, .party-icon, .gi
   .itin.itin-scroll::before { transform: none; }
   .itin.itin-scroll .itin-fila, .itin.itin-scroll .itin-punto, .itin.itin-scroll .itin-hora, .itin.itin-scroll .itin-tx { opacity: 1; transform: none; filter: none; transition: none; }
 }
+/* Tarjeta de bienvenida/pases debajo de la cuenta regresiva */
+.countdown-section .guest-section { margin: 2.4rem auto 0 !important; max-width: 420px !important; width: calc(100% - 2.4rem) !important; }
+
+/* ===== Tarjeta de invitado/pases: elegante, acorde al tema ===== */
+.countdown-section .guest-section.pase-card {
+  position: relative; text-align: center; margin: 2.8rem auto 1.6rem !important; max-width: 400px !important; width: calc(100% - 3rem) !important;
+  padding: 2.4rem 1.6rem 2.2rem !important; border-radius: 160px 160px 6px 6px !important;
+  background: linear-gradient(180deg, rgba(255,248,238,.10), rgba(255,248,238,.04)) !important;
+  border: 1px solid rgba(243,235,221,.55) !important; box-shadow: 0 24px 40px -26px rgba(40,14,6,.7) !important; color: #F3EBDD; }
+.pase-card::before { content: ""; position: absolute; inset: 7px; border: 1px solid rgba(216,225,201,.35);
+  border-radius: 154px 154px 3px 3px; pointer-events: none; }
+.pase-kicker { margin: .6rem 0 .5rem; font-family: 'Cormorant Garamond', serif; font-size: .78rem; letter-spacing: .28em;
+  text-transform: uppercase; color: #D8E1C9; }
+.pase-card .guest-greeting { display: flex; flex-direction: column; gap: .1rem; margin: 0; }
+.pase-card .guest-name { display: block; background: none !important; padding: 0 !important; margin: 0 !important; border: 0 !important;
+  font-family: 'Great Vibes', cursive; font-size: 2.5rem; line-height: 1.15; color: #FFF8EE; text-shadow: 0 2px 12px rgba(40,14,6,.35); box-shadow: none !important; }
+.pase-card .guest-subtitle { color: #E3D2C4; font-style: italic; margin: .2rem 0 0; }
+.pase-flor { display: block; width: 200px; height: 26px; margin: .9rem auto 1.1rem;
+  background: center / contain no-repeat url("iconos/separador-titulo.webp?v=2"); }
+.pase-cupo { display: flex; align-items: center; justify-content: center; gap: .85rem; flex-wrap: wrap; }
+.pase-label { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.12rem; color: #F3EBDD; }
+.pase-card .pase-num { position: static; width: 48px; height: 48px; margin: 0; display: grid; place-items: center; border-radius: 50%;
+  font-family: 'Bodoni Moda', serif; font-size: 1.45rem; font-weight: 500; color: #A64B2A; background: #F3EBDD;
+  box-shadow: 0 0 0 4px rgba(166,75,42,1), 0 0 0 5px rgba(243,235,221,.6), 0 8px 18px -6px rgba(40,14,6,.6); }
+@media (max-width: 360px) { .pase-card .guest-name { font-size: 2.1rem; } .pase-label { font-size: 1rem; } }
+
+/* ===== Sección "Su Invitación" (pases), verde salvia ===== */
+.pase-seccion { position: relative; }
+.pase-banda { position: relative; isolation: isolate; text-align: center; color: #F3EBDD;
+  width: 100%; max-width: 1100px; margin: 0 auto; padding: 3.4rem 1.6rem 3.6rem; box-sizing: border-box;
+  background: linear-gradient(180deg, #6B7F5C 0%, #5F7351 100%); box-shadow: 0 8px 24px -8px rgba(0,0,0,.35); }
+@media (max-width: 768px) { .pase-banda { width: 100vw; max-width: 100vw; } }
+.pase-banda::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .04;
+  background: url("iconos/fondo-floral-movil.webp") center / cover no-repeat; filter: brightness(2.2) grayscale(1); }
+.pase-titulo { color: #F3EBDD !important; margin-bottom: 1rem; }
+.pase-intro { margin: 0 0 .3rem; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.18rem; color: #E3EBD6; }
+.pase-banda .guest-greeting { display: flex; flex-direction: column; gap: .1rem; margin: 0 0 .2rem; }
+.pase-banda .guest-name { display: block; background: none !important; padding: 0 !important; margin: 0 !important; border: 0 !important; box-shadow: none !important;
+  font-family: 'Great Vibes', cursive; font-size: 2.6rem; line-height: 1.15; color: #FFF8EE; text-shadow: 0 2px 12px rgba(20,30,15,.3); }
+.pase-banda .guest-subtitle { color: #E3EBD6; font-style: italic; margin: 0; }
+.pase-medalla { width: 118px; height: 118px; margin: 1.4rem auto 1.3rem; border-radius: 50%; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; background: #F3EBDD; color: #A64B2A;
+  box-shadow: 0 0 0 6px #6B7F5C, 0 0 0 7px rgba(243,235,221,.7), 0 0 0 14px rgba(243,235,221,.12), 0 18px 30px -12px rgba(20,30,15,.6); }
+.pase-medalla .guest-badge { all: unset; font-family: 'Bodoni Moda', serif; font-size: 2.9rem; line-height: 1; font-weight: 500; color: #A64B2A; }
+.pase-medalla small { margin-top: .2rem; font-family: 'Cormorant Garamond', serif; font-size: .8rem; letter-spacing: .26em; text-transform: uppercase; color: #6B7F5C; }
+.pase-nota { max-width: 25rem; margin: 0 auto; font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; line-height: 1.45; color: #F3EBDD; }
+.pase-nota b { color: #FFF8EE; font-weight: 600; white-space: nowrap; }
+.pase-gracias { margin: .9rem 0 0; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: #D8E1C9; }
+.pase-gracias::before, .pase-gracias::after { content: "—"; margin: 0 .5rem; opacity: .6; }
+/* Su Invitación: solo el mensaje, sin nombre ni medalla */
+.pase-banda { padding: 3.2rem 1.6rem 3.4rem; }
+.pase-titulo { margin-bottom: 1.4rem; }
+.pase-nota { font-size: 1.3rem; line-height: 1.5; max-width: 23rem; }
+.pase-nota b { font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: 1.12em; color: #FFF8EE; border-bottom: 1px solid rgba(243,235,221,.55); padding-bottom: 1px; }
+.pase-gracias { margin-top: 1.2rem; }

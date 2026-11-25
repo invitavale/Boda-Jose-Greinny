@@ -24,7 +24,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://www.google.com">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pinyon+Script&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=EB+Garamond:ital,wght@0,400..600;1,400..500&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="CCSB.css?v=42">
+    <link rel="stylesheet" href="CCSB.css?v=47">
     <link rel="stylesheet" href="regalo-modal.css?v=8">
         <style>
         /* Carrusel: 3 imágenes simultáneamente con foto central destacada */
@@ -500,13 +500,6 @@
         <div class="section-divider pincel a-oscuro" aria-hidden="true"></div>
         <!-- Countdown + calendario (fondo chocolate) -->
         <div class="countdown-section tono-oscuro">
-            <div id="guestSection" class="guest-section" style="display:none;">
-                <div id="guestBadge" class="guest-badge">0</div>
-                <h2 class="guest-title">¡Bienvenidos!</h2>
-                <p id="guestSubtitle" class="guest-subtitle" style="display:none;"></p>
-                <div id="guestGreeting" class="guest-greeting"></div>
-                <p id="guestPase" class="guest-pase" style="display:none;"></p>
-            </div>
             <div class="fecha-escrita" aria-label="Jueves 7 de enero de 2027, 3:30 de la tarde">
                 <p class="fe-dia">Jueves</p>
                 <p class="fe-fecha">7 de enero de 2027</p>
@@ -645,6 +638,16 @@
         </section>
 
         <!-- RSVP -->
+        <!-- Pase del invitado: sección propia (solo aparece con ?p= o ?invitados=) -->
+        <div id="guestSection" class="pase-seccion" style="display:none;">
+            <div class="section-divider pincel a-salvia" aria-hidden="true"></div>
+            <div class="pase-banda" role="region" aria-label="Su invitación">
+                <h2 class="section-title pase-titulo">Su Invitación</h2>
+                <div hidden><div id="guestGreeting" class="guest-greeting"></div><p id="guestSubtitle" class="guest-subtitle"></p><span id="guestBadge">0</span></div>
+                <p id="guestPase" class="pase-nota"></p>
+                <p class="pase-gracias">Agradecemos de corazón su comprensión.</p>
+            </div>
+        </div>
         <div class="section-divider pincel a-claro" aria-hidden="true"></div>
         <section class="rsvp-section">
             <div class="rsvp-container">
@@ -691,7 +694,7 @@
             } catch(e) {}
         })();
         </script>
-        <script src="JAVAB.js?v=34" defer></script>
+        <script src="JAVAB.js?v=37" defer></script>
         <script src="regalo-modal.js?v=6" defer></script>
 </body>
 </html>

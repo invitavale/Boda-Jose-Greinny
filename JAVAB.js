@@ -470,8 +470,21 @@ function showGifts() {
 
 // Confirmación de asistencia (Google Form)
 // (antes: https://docs.google.com/forms/d/e/1FAIpQLSdIYoM33yAkMmS4DZCRVmO9_IE0gZT4eEw8cV0r2PgWlYE0Ag/viewform?usp=header)
+// Confirmación directa por WhatsApp al 829-819-2017 con mensaje prefijado.
+// Si el enlace trae ?p=N (pases) y/o ?invitados=Nombre, se incluyen en el mensaje.
+const RSVP_WHATSAPP = '18298192017';
 function confirmAttendance() {
-    // Desactivado en esta versión de muestra.
+    const params = new URLSearchParams(window.location.search);
+    let pases = parseInt(params.get('p') || params.get('pases'), 10);
+    if (isNaN(pases)) pases = 0;
+    pases = Math.max(0, Math.min(4, pases));
+    const nombres = (params.get('invitados') || '').split(',').map(function (n) { return n.trim(); }).filter(Boolean);
+    let msg = '¡Hola! Confirmo mi asistencia a la boda de José & Greinny el jueves 7 de enero de 2027 a las 3:30 PM.';
+    if (pases === 1) msg = '¡Hola! Confirmo mi asistencia a la boda de José & Greinny el jueves 7 de enero de 2027 a las 3:30 PM (1 persona).';
+    else if (pases > 1) msg = '¡Hola! Confirmo nuestra asistencia a la boda de José & Greinny el jueves 7 de enero de 2027 a las 3:30 PM (' + pases + ' personas).';
+    if (nombres.length) msg += ' De parte de: ' + nombres.join(', ') + '.';
+    msg += ' ¡Gracias por la invitación! 💍';
+    window.open('https://wa.me/' + RSVP_WHATSAPP + '?text=' + encodeURIComponent(msg), '_blank');
 }
 
 // Sistema de Toast

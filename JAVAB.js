@@ -123,7 +123,7 @@ function setupMusic() {
 // subiendo suavemente y enfocándose.
 function setupScrollReveal() {
     if (!('IntersectionObserver' in window)) return;
-    const items = document.querySelectorAll('.content section > *:not(.section-divider), .content .countdown-section > *, .content .bienvenida-section > *, .content .polaroid, .content .t-item, .content .party-card, .content .lugar-card');
+    const items = document.querySelectorAll('.content section > *:not(.section-divider), .content .countdown-section > *, .content .bienvenida-section > *, .content .gf-viewport, .content .party-card, .content .lugar-card');
     const io = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
             if (entry.isIntersecting) {
@@ -138,6 +138,31 @@ function setupScrollReveal() {
         el.classList.add('reveal');
         io.observe(el);
     });
+
+    // Itinerario: cada momento aparece uno a uno según vas bajando,
+    // y la línea va creciendo con el scroll.
+    const itin = document.getElementById('itin');
+    if (itin) {
+        itin.classList.add('itin-scroll');
+        const filas = itin.querySelectorAll('.itin-fila');
+        const io3 = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (e.isIntersecting) { e.target.classList.add('is-in'); io3.unobserve(e.target); }
+            });
+        }, { threshold: 0.6, rootMargin: '0px 0px -12% 0px' });
+        filas.forEach(function (f) { f.style.transitionDelay = '0s'; io3.observe(f); });
+        let ticking = false;
+        function progreso() {
+            ticking = false;
+            const r = itin.getBoundingClientRect();
+            const vh = window.innerHeight;
+            const p = Math.max(0, Math.min(1, (vh * 0.85 - r.top) / r.height));
+            itin.style.setProperty('--itin-prog', p.toFixed(3));
+        }
+        window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(progreso); } }, { passive: true });
+        window.addEventListener('resize', progreso);
+        progreso();
+    }
 
     // Pie con foto: la foto y los textos aparecen juntos cuando el pie entra
     // en pantalla (los nombres quedan pegados al final de la página).
@@ -551,4 +576,65 @@ function initializeGuestGreeting() {
   } else {
     clearCaches();
   }
+})();
+
+
+// Carrusel de fotos: ancho completo, el alto se ajusta a cada foto,
+// pasa solo cada 4.5 s, con flechas, puntos y deslizar con el dedo.
+(function () {
+    function init() {
+        const vp = document.getElementById('gfViewport');
+        const track = document.getElementById('gfTrack');
+        const dotsBox = document.getElementById('gfDots');
+        if (!vp || !track) return;
+        const slides = Array.prototype.slice.call(track.children);
+        const n = slides.length;
+        let i = 0, timer = null;
+        const dots = slides.map(function (_, k) {
+            const d = document.createElement('button');
+            d.type = 'button'; d.className = 'gf-dot'; d.setAttribute('aria-label', 'Foto ' + (k + 1));
+            d.addEventListener('click', function () { go(k); restart(); });
+            dotsBox.appendChild(d); return d;
+        });
+        // Alto fijo: el de la foto más alta (las demás se centran sin recortarse)
+        function fit() {
+            let r = 0;
+            slides.forEach(function (s) {
+                const img = s.querySelector('img');
+                const ri = img.naturalWidth ? img.naturalHeight / img.naturalWidth
+                         : (img.getAttribute('height') / img.getAttribute('width')) || 1.25;
+                if (ri > r) r = ri;
+            });
+            vp.style.height = Math.round(vp.clientWidth * r) + 'px';
+        }
+        slides.forEach(function (s) {
+            const src = s.querySelector('img').getAttribute('src');
+            const bg = document.createElement('div');
+            bg.className = 'gf-fondo'; bg.style.backgroundImage = 'url("' + src + '")';
+            s.insertBefore(bg, s.firstChild);
+        });
+        function go(k) {
+            i = (k + n) % n;
+            track.style.transform = 'translateX(' + (-i * 100) + '%)';
+            slides.forEach(function (s, k2) { s.classList.toggle('is-active', k2 === i); });
+            dots.forEach(function (d, k2) { d.classList.toggle('is-active', k2 === i); });
+            fit();
+        }
+        function restart() { clearInterval(timer); timer = setInterval(function () { go(i + 1); }, 4500); }
+        vp.querySelector('.gf-prev').addEventListener('click', function () { go(i - 1); restart(); });
+        vp.querySelector('.gf-next').addEventListener('click', function () { go(i + 1); restart(); });
+        let x0 = null;
+        vp.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; clearInterval(timer); }, { passive: true });
+        vp.addEventListener('touchend', function (e) {
+            if (x0 === null) return;
+            const dx = e.changedTouches[0].clientX - x0; x0 = null;
+            if (Math.abs(dx) > 40) go(dx < 0 ? i + 1 : i - 1);
+            restart();
+        });
+        slides.forEach(function (s) { const im = s.querySelector('img'); if (!im.complete) im.addEventListener('load', fit); });
+        window.addEventListener('resize', fit);
+        document.addEventListener('visibilitychange', function () { if (document.hidden) clearInterval(timer); else restart(); });
+        go(0); restart();
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();

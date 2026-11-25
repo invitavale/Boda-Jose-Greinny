@@ -11,20 +11,20 @@
     <meta property="og:url" content="https://invitavale.com/Boda-Jose-Greinny/">
     <meta property="og:title" content="José & Greinny · ¡Nos casamos!">
     <meta property="og:description" content="7 de enero de 2027 · Te invitamos a celebrar nuestra boda 💍">
-    <meta property="og:image" content="https://invitavale.com/Boda-Jose-Greinny/og-portada.jpg?v=3">
-    <meta property="og:image:secure_url" content="https://invitavale.com/Boda-Jose-Greinny/og-portada.jpg?v=3">
+    <meta property="og:image" content="https://invitavale.com/Boda-Jose-Greinny/og-portada.jpg?v=4">
+    <meta property="og:image:secure_url" content="https://invitavale.com/Boda-Jose-Greinny/og-portada.jpg?v=4">
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:locale" content="es_DO">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://invitavale.com/Boda-Jose-Greinny/og-portada.jpg?v=3">
-    <link rel="preload" as="image" href="foto0.jpg?v=3">
+    <meta name="twitter:image" content="https://invitavale.com/Boda-Jose-Greinny/og-portada.jpg?v=4">
+    <link rel="preload" as="image" href="foto0.jpg?v=4">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://www.google.com">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pinyon+Script&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=EB+Garamond:ital,wght@0,400..600;1,400..500&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="CCSB.css?v=35">
+    <link rel="stylesheet" href="CCSB.css?v=42">
     <link rel="stylesheet" href="regalo-modal.css?v=8">
         <style>
         /* Carrusel: 3 imágenes simultáneamente con foto central destacada */
@@ -157,7 +157,7 @@
         /* Ajuste temporal: mantener altura visible sin tocar el attachment */
         @media (min-width: 1025px) {
             .hero-section {
-                background-image: url('foto0.jpg?v=3') !important;
+                background-image: url('foto0.jpg?v=4') !important;
             }
         }
 
@@ -473,7 +473,7 @@
 
         <!-- Hero Section -->
         <div class="hero-section">
-            <img class="hero-bg" src="foto0.jpg?v=3" alt="Portada boda José y Greinny">
+            <img class="hero-bg" src="foto0.jpg?v=4" alt="Portada boda José y Greinny">
             <div class="hero-overlay"></div>
             <div class="top-garland">
                 <img src="separador-flores.png?v=6" alt="">
@@ -560,53 +560,36 @@
 
         <!-- Itinerario (nuevo) — actividades de ejemplo, editar horas y textos aquí -->
 
-        <!-- Fotos de los novios (de dos en dos, estilo polaroid) -->
-        <div class="fotos-pareja">
-            <figure class="polaroid pol-izq"><img src="galeria-1.jpg" alt="José y Greinny junto a su caballo" width="1100" height="1375" decoding="async"></figure>
-            <figure class="polaroid pol-der"><img src="galeria-2.jpg" alt="José y Greinny en el campo" width="1100" height="1375" decoding="async"></figure>
+        <!-- Galería: sección propia (verde salvia) con carrusel a todo lo ancho -->
+        <div class="section-divider pincel a-salvia" aria-hidden="true"></div>
+        <div class="galeria-fotos" role="region" aria-label="Fotos de José y Greinny">
+            <h2 class="section-title gf-titulo">Nuestros Momentos</h2>
+            <p class="section-subtitle gf-sub">Un pedacito de nuestra historia antes del gran día.</p>
+            <div class="gf-viewport" id="gfViewport">
+                <div class="gf-track" id="gfTrack">
+                    <figure class="gf-slide"><img src="carrusel-1.jpg" width="1600" height="2000" alt="José y Greinny junto a su caballo" decoding="async"></figure>
+                    <figure class="gf-slide"><img src="carrusel-2.jpg" width="1600" height="2000" alt="José a caballo y Greinny con su ramo" decoding="async"></figure>
+                    <figure class="gf-slide"><img src="carrusel-3.jpg" width="1600" height="2000" alt="Greinny sonriendo junto a José" decoding="async"></figure>
+                    <figure class="gf-slide"><img src="carrusel-4.jpg" width="1600" height="1066" alt="José y Greinny besándose en el campo" decoding="async"></figure>
+                </div>
+                <button class="gf-nav gf-prev" type="button" aria-label="Foto anterior">&#8249;</button>
+                <button class="gf-nav gf-next" type="button" aria-label="Foto siguiente">&#8250;</button>
+            </div>
+            <div class="gf-dots" id="gfDots" role="tablist"></div>
         </div>
+
         <div class="section-divider pincel a-oscuro" aria-hidden="true"></div>
         <section class="itinerario-section">
             <h2 class="section-title">Itinerario</h2>
             <p class="section-subtitle">Así viviremos juntos esta tarde tan especial.</p>
-            <div class="timeline">
-                <div class="t-item">
-                    <div class="t-ico"><img src="iconos/insp/iglesia.webp" alt=""></div>
-                    <div class="t-linea"></div>
-                    <div class="t-tx"><b>3:30 PM</b><span>Ceremonia religiosa</span><small>Nuestra unión bajo la bendición de Dios.</small></div>
-                </div>
-                <span class="t-dot"></span>
-                <div class="t-item">
-                    <div class="t-tx"><b>4:30 PM</b><span>Recepción tipo cóctel</span><small>En el mismo lugar de la ceremonia.</small></div>
-                    <div class="t-linea"></div>
-                    <div class="t-ico"><img src="iconos/insp/salon.webp" alt=""></div>
-                </div>
-                <span class="t-dot"></span>
-                <div class="t-item">
-                    <div class="t-ico t-ico-flota"><img src="iconos/insp/mesa.webp" alt=""></div>
-                    <div class="t-linea"></div>
-                    <div class="t-tx"><b>5:00 PM</b><span>Bocadillos y bebidas</span><small>Compartir y celebrar juntos.</small></div>
-                </div>
-                <span class="t-dot"></span>
-                <div class="t-item">
-                    <div class="t-tx"><b>5:30 PM</b><span>Brindis de los novios</span><small>Celebramos juntos nuestro amor.</small></div>
-                    <div class="t-linea"></div>
-                    <div class="t-ico t-ico-mezcla"><img src="iconos/anim/brindis.webp?v=fijo" alt=""></div>
-                </div>
-                <span class="t-dot"></span>
-                <div class="t-item">
-                    <div class="t-ico"><img src="iconos/anim/ramo.webp?v=fijo" alt=""></div>
-                    <div class="t-linea"></div>
-                    <div class="t-tx"><b>6:00 PM</b><span>Lanzamiento del ramo</span><small>Buenos deseos para la próxima novia.</small></div>
-                </div>
-                <span class="t-dot"></span>
-                <div class="t-item">
-                    <div class="t-tx"><b>6:30 PM</b><span>¡A bailar!</span><small>Música, baile y mucha diversión.</small></div>
-                    <div class="t-linea"></div>
-                    <div class="t-ico t-ico-lleno"><img src="iconos/anim/fiesta.webp?v=fijo" alt=""></div>
-                </div>
-                <span class="t-dot"></span>
-            </div>
+            <ol class="itin" id="itin">
+                <li class="itin-fila"><time class="itin-hora">3:30 PM</time><span class="itin-punto" aria-hidden="true"></span><div class="itin-tx"><b>Ceremonia religiosa</b><small>Nuestra unión bajo la bendición de Dios.</small></div></li>
+                <li class="itin-fila"><time class="itin-hora">4:30 PM</time><span class="itin-punto" aria-hidden="true"></span><div class="itin-tx"><b>Recepción tipo cóctel</b><small>En el mismo lugar de la ceremonia.</small></div></li>
+                <li class="itin-fila"><time class="itin-hora">5:00 PM</time><span class="itin-punto" aria-hidden="true"></span><div class="itin-tx"><b>Bocadillos y bebidas</b><small>Compartir y celebrar juntos.</small></div></li>
+                <li class="itin-fila"><time class="itin-hora">5:30 PM</time><span class="itin-punto" aria-hidden="true"></span><div class="itin-tx"><b>Brindis de los novios</b><small>Celebramos juntos nuestro amor.</small></div></li>
+                <li class="itin-fila"><time class="itin-hora">6:00 PM</time><span class="itin-punto" aria-hidden="true"></span><div class="itin-tx"><b>Lanzamiento del ramo</b><small>Buenos deseos para la próxima novia.</small></div></li>
+                <li class="itin-fila"><time class="itin-hora">6:30 PM</time><span class="itin-punto" aria-hidden="true"></span><div class="itin-tx"><b>¡A bailar!</b><small>Música, baile y mucha diversión.</small></div></li>
+            </ol>
         </section>
 
         <!-- Party Information -->
@@ -646,11 +629,7 @@
         </section>
 
         <!-- Gifts -->
-                <!-- Fotos de los novios (de dos en dos, estilo polaroid) -->
-        <div class="fotos-pareja fp-mixta">
-            <figure class="polaroid pol-izq"><img src="galeria-3.jpg" alt="José a caballo tomando la mano de Greinny" width="1100" height="1375" decoding="async"></figure>
-            <figure class="polaroid pol-der"><img src="galeria-4.jpg" alt="José y Greinny besándose en el campo" width="1100" height="733" decoding="async"></figure>
-        </div>
+        
         <div class="section-divider pincel a-oscuro" aria-hidden="true"></div>
         <section class="gifts-section">
             <div class="gifts-container">
@@ -682,7 +661,7 @@
 
         <!-- Footer -->
         <footer class="footer footer-foto">
-            <img class="footer-bg" src="foto-final.jpg?v=1" alt="Greinny sonriendo junto a José" width="1800" height="2250" decoding="async">
+            <img class="footer-bg" src="foto-final.jpg?v=2" alt="José y Greinny abrazados en el campo con los caballos" width="1800" height="2250" decoding="async">
             <div class="footer-verso">
                 <p class="fv-texto">«Pues bien, lo que Dios unió no lo separe el hombre.»</p>
                 <p class="fv-cita">Mateo 19, 6</p>
@@ -712,7 +691,7 @@
             } catch(e) {}
         })();
         </script>
-        <script src="JAVAB.js?v=29" defer></script>
+        <script src="JAVAB.js?v=34" defer></script>
         <script src="regalo-modal.js?v=6" defer></script>
 </body>
 </html>

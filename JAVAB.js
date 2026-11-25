@@ -123,7 +123,7 @@ function setupMusic() {
 // subiendo suavemente y enfocándose.
 function setupScrollReveal() {
     if (!('IntersectionObserver' in window)) return;
-    const items = document.querySelectorAll('.content section > *:not(.section-divider), .content .countdown-section > *, .content .bienvenida-section > *, .content .footer-verso, .content .footer-content');
+    const items = document.querySelectorAll('.content section > *:not(.section-divider), .content .countdown-section > *, .content .bienvenida-section > *, .content .polaroid, .content .t-item, .content .party-card, .content .lugar-card');
     const io = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
             if (entry.isIntersecting) {
@@ -138,6 +138,26 @@ function setupScrollReveal() {
         el.classList.add('reveal');
         io.observe(el);
     });
+
+    // Pie con foto: la foto y los textos aparecen juntos cuando el pie entra
+    // en pantalla (los nombres quedan pegados al final de la página).
+    const pie = document.querySelector('.footer-foto');
+    if (pie) {
+        const piezas = pie.querySelectorAll('.footer-bg, .footer-verso, .footer-content');
+        piezas.forEach(function(el, i) {
+            el.classList.add('reveal');
+            el.style.transitionDelay = (i === 0 ? 0 : 0.5 + i * 0.25) + 's';
+        });
+        const io2 = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    piezas.forEach(function(el) { el.classList.add('is-visible'); });
+                    io2.disconnect();
+                }
+            });
+        }, { threshold: 0.12 });
+        io2.observe(pie);
+    }
 }
 
 // Inicializar cuando el DOM esté listo
@@ -454,6 +474,7 @@ function showToast(title, message) {
 // Formatos soportados:
 //   ?invitados=Juan Arias,Yerianny Arias,Valery Arias
 //   ?familia=Arias
+//   &p=2  -> pases (1 a 4): "Invitación válida por 2 personas"
 function initializeGuestGreeting() {
     const params = new URLSearchParams(window.location.search);
     const invitadosParam = params.get('invitados');
@@ -473,14 +494,25 @@ function initializeGuestGreeting() {
         names = [`Familia ${familiaParam.trim()}`];
     }
 
-    if (names.length === 0) return;
+    // Pases: ?p=1..4 (o ?pases=) -> "Invitación válida por N persona(s)"
+    let pases = parseInt(params.get('p') || params.get('pases') || params.get('acomp') && (parseInt(params.get('acomp'),10)+1), 10);
+    if (isNaN(pases)) pases = 0;
+    pases = Math.max(0, Math.min(4, pases));
 
-    // Badge con el total de invitados
-    badge.textContent = names.length;
+    if (names.length === 0 && !pases) return;
+
+    const pase = document.getElementById('guestPase');
+    if (pase && pases) {
+        pase.innerHTML = `Invitación válida por <b>${pases} persona${pases > 1 ? 's' : ''}</b>`;
+        pase.style.display = 'block';
+    }
+
+    // Badge: número de pases si viene en el enlace; si no, total de nombres
+    badge.textContent = pases || names.length;
 
     // Subtítulo de acompañantes: solo tiene sentido cuando hay más de un
     // nombre individual (no aplica al formato "Familia X")
-    const companions = invitadosParam ? names.length - 1 : 0;
+    const companions = (invitadosParam && !pases) ? names.length - 1 : 0;
     if (companions > 0) {
         subtitle.textContent = `(${companions} acompañante${companions > 1 ? 's' : ''})`;
         subtitle.style.display = 'block';

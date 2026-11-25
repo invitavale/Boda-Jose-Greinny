@@ -3023,10 +3023,10 @@ body { font-family: 'EB Garamond', Georgia, serif; font-size: 1.15rem; }
    SEXTA RONDA — Íconos animados (videos convertidos a WebP animado)
    Mismos tamaños que los íconos fijos.
    ===================================================================== */
-.countdown-section .section-title::before { background-image: url("iconos/anim/reloj.webp?v=3") !important; }
+.countdown-section .section-title::before { background-image: url("iconos/anim/reloj.webp?v=fijo") !important; }
 /* Anillos del pie: animados, ya vienen en tono claro (sin filtro) */
 .footer-content::before {
-    background-image: url("iconos/anim/anillos.webp") !important;
+    background-image: url("iconos/anim/anillos.webp?v=fijo") !important;
     filter: drop-shadow(0 0 10px rgba(240, 232, 210, 0.3)) !important;
 }
 /* Itinerario: brindis con fondo blanco fundido sobre el medallón marfil */
@@ -3100,3 +3100,74 @@ body { font-family: 'EB Garamond', Georgia, serif; font-size: 1.15rem; }
 .lugar-fecha, .lugar-nota { color: #6E8261 !important; }
 .lugar-hora, .lugar-sitio { color: #3D2A20 !important; }
 .cal-d.on i { background: #8FA27E !important; color: #FFF8F1 !important; }
+
+/* ===== Íconos fijos: ningún ícono se anima ===== */
+@keyframes gentle-pulse {} @keyframes gentle-bounce {} @keyframes giftFloat {}
+@keyframes ceremonia-pulse {} @keyframes ceremonia-sparkle {}
+@keyframes butterfly-drift {} @keyframes lantern-sway {}
+@keyframes anim-balanceo {} @keyframes anim-flota {} @keyframes anim-regalo {}
+@keyframes heartBeat {} @keyframes musicBounce {} @keyframes phoneRing {} @keyframes cameraFlash {}
+img[src*="iconos/"], .theme-icon-img, .t-ico img, .modern-icon, .party-icon, .gift-icon, .gift-icon svg,
+.regalo-medallon, .regalo-medallon img, .ceremonia-icon * { animation: none !important; }
+.gifts-container:hover .gift-icon svg, .gifts-container:hover .theme-icon-img { transform: none !important; }
+
+/* ===== Pases por enlace ===== */
+.guest-pase { margin: 1.2rem auto 0; padding: .7rem 1.2rem; max-width: 340px; border-radius: 999px;
+  background: rgba(107,127,92,.12); border: 1px solid rgba(107,127,92,.35);
+  color: #4E5F43; font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-style: italic; }
+.guest-pase b { color: #A64B2A; font-style: normal; font-weight: 600; }
+
+/* ===== Fotos de dos en dos, estilo polaroid ===== */
+.fotos-pareja { position: relative; display: grid; gap: 3.4rem; padding: 3rem 1.4rem 6rem;
+  max-width: 980px; margin: 0 auto; background: transparent; }
+.polaroid { margin: 0; background: #fff; padding: 12px 12px 54px; border-radius: 2px;
+  box-shadow: 0 18px 34px -16px rgba(60,28,16,.45), 0 2px 6px rgba(60,28,16,.12); width: 86%; }
+.polaroid img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
+.pol-izq { justify-self: start; transform: rotate(-3deg); }
+.pol-der { justify-self: end; transform: rotate(2.5deg); }
+.fp-mixta .pol-der img { aspect-ratio: 3 / 2; }
+@media (min-width: 760px) {
+  .fotos-pareja { grid-template-columns: 1fr 1fr; align-items: center; gap: 4rem; padding: 4rem 2.6rem 7rem; }
+  .polaroid { width: 100%; }
+  .pol-der { margin-top: 3.5rem; }
+}
+
+/* ===== Última sección: foto completa de fondo (sin franja naranja) ===== */
+.footer.footer-foto { position: relative; padding: 0 !important; background: #1E1814 !important;
+  max-width: 1100px; overflow: hidden; isolation: isolate; border: 0 !important; }
+.footer-foto::before { display: none !important; }
+.footer-foto .footer-bg { display: block; position: relative; width: 100%; height: auto; margin: 0; }
+.footer-foto .footer-verso, .footer-foto .footer-content { position: absolute; left: 0; right: 0; z-index: 2; padding: 0 1.2rem; }
+.footer-foto .footer-verso { top: 0; padding-top: 2.2rem; }
+.footer-foto .footer-content { bottom: 0; padding-bottom: 2rem; }
+.footer-foto .footer-content::before { display: none; }
+.footer-foto::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(20,14,10,.55) 0%, rgba(20,14,10,.18) 16%, rgba(20,14,10,0) 28%,
+              rgba(20,14,10,0) 60%, rgba(20,14,10,.5) 80%, rgba(20,14,10,.85) 100%); }
+.footer-foto .fv-texto, .footer-foto .fv-cita, .footer-foto .footer-content p, .footer-foto .footer-content h3, .footer-foto .footer-date
+  { text-shadow: 0 2px 10px rgba(0,0,0,.55); }
+@media (max-width: 600px) {
+  .footer-foto .footer-verso { padding-top: 1.1rem; }
+  .footer-foto .fv-texto { font-size: .95rem !important; line-height: 1.3; }
+  .footer-foto .footer-content { padding-bottom: .9rem; }
+  .footer-foto .footer-content p { font-size: .95rem !important; margin: 0; }
+  .footer-foto .footer-content h3 { font-size: 1.85rem !important; line-height: 1.1; margin: .2rem 0; }
+  .footer-foto .footer-date { margin-top: .4rem !important; }
+}
+
+/* ===== Efectos al hacer scroll (fotos incluidas) ===== */
+.polaroid.reveal { filter: none; transition: opacity 1.2s ease, transform 1.3s cubic-bezier(.2,.8,.2,1); }
+.pol-izq.reveal { transform: translate(-60px, 40px) rotate(-12deg) scale(.92); }
+.pol-der.reveal { transform: translate(60px, 40px) rotate(11deg) scale(.92); }
+.pol-izq.reveal.is-visible { transform: rotate(-3deg); }
+.pol-der.reveal.is-visible { transform: rotate(2.5deg); }
+.footer-bg.reveal { transform: scale(1.12); filter: blur(4px) saturate(.8); opacity: 0;
+  transition: opacity 1.4s ease, transform 2.4s cubic-bezier(.2,.8,.2,1), filter 1.6s ease; }
+.footer-bg.reveal.is-visible { transform: scale(1); filter: none; opacity: 1; }
+.t-item.reveal:nth-of-type(odd) { transform: translateX(-40px); }
+.t-item.reveal:nth-of-type(even) { transform: translateX(40px); }
+.t-item.reveal.is-visible { transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .polaroid.reveal, .footer-bg.reveal, .t-item.reveal { transform: none !important; opacity: 1 !important; filter: none !important; transition: none !important; }
+  .pol-izq { transform: rotate(-3deg) !important; } .pol-der { transform: rotate(2.5deg) !important; }
+}
